@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <script src="/FED/index.js"></script>
+</head>
+
+<body>
+    <!-- Public Content -->
+    <div class="public">
+        <!-- Your public content goes here -->
+        Hello Visitors
+    </div>
+
+    <!-- Developer Content -->
+    <div class="developer">
+        <!-- Your developer content goes here -->
+        Hello Developers
+        <p>Total Visitors: <span id="visitorCount">Loading...</span></p>
+    </div>
+</body>
+<!-- Include the Axios library -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script>
+    // Make a GET request using Axios
+    axios.get('http://localhost:3000/count')
+    .then(response => {
+        const visitorCount = response.data.count;
+        document.getElementById('visitorCount').textContent = visitorCount;
+    })
+    .catch(error => {
+        console.error('Error fetching visitor count:', error);
+    });
+</script>
+
+</html>
