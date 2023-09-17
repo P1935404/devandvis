@@ -1,22 +1,9 @@
 var express = require('express');
 var app = express();
-const fs = require('fs');
 const cors = require('cors');
 app.options('*', cors()); //enter cors codes
 app.use(cors());
 const port = 3000;
-
-// File to store and manage visitor count
-const counterFile = 'visitor_count.txt';
-// Function to increment and get the visitor count
-function cnt(counterFile) {
-    let count = 1;
-    if (fs.existsSync(counterFile)) {
-        count = parseInt(fs.readFileSync(counterFile, 'utf8')) + 1;
-    }
-    fs.writeFileSync(counterFile, count.toString());
-    return count;
-}
 
 // Serve the HTML file
 app.get('/', (req, res) => {
@@ -30,9 +17,11 @@ app.get('/', (req, res) => {
     });
 });
 
+let visitorCount = 0;
+
 // Increment visitor count and return as JSON
 app.get('/count', (req, res) => {
-    const visitorCount = cnt(counterFile);
+    visitorCount++;
     res.json({ count: visitorCount });
 });
 

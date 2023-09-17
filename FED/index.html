@@ -22,19 +22,22 @@
         <p>Total Visitors: <span id="visitorCount">Loading...</span></p>
     </div>
 </body>
+
 <!-- Include the Axios library -->
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 <script>
-    // Make a GET request using Axios
     axios.get('http://localhost:3000/count')
-    .then(response => {
-        const visitorCount = response.data.count;
-        document.getElementById('visitorCount').textContent = visitorCount;
-    })
-    .catch(error => {
-        console.error('Error fetching visitor count:', error);
-    });
+        .then(response => {
+            console.log(response);
+            console.log(response.data.count)
+            const visitorCount = response.data.count;
+            document.getElementById('visitorCount').textContent = visitorCount;
+            event.preventDefault()
+        })
+        .catch(error => {
+            console.error('Error fetching visitor count:', error);
+        });
 </script>
 
 </html>

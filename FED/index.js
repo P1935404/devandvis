@@ -1,23 +1,21 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Your code here
-    // Check if a URL parameter named "userType" is set to "developer"
-    const urlParams = new URLSearchParams(window.location.search);
-    const userType = urlParams.get("userType");
-    console.log("User Type:", userType);
+    function getQueryParam(paramName) {
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        return urlParams.get(paramName);
+    }
 
-    const publicContent = document.querySelector(".public");
-    const developerContent = document.querySelector(".developer");
+    // Get the "userType" query parameter
+    const userType = getQueryParam("user");
+    console.log(userType);
 
-    if (publicContent && developerContent) {
-        // Access the style property here
-        if (userType == "dev") {
-            // Show developer content and hide public content
-            document.querySelector(".public").style.display = "none";
-            document.querySelector(".developer").style.display = "block";
-        } else {
-            // Show public content and hide developer content
-            document.querySelector(".public").style.display = "block";
-            document.querySelector(".developer").style.display = "none";
-        };
-    };
+    if (userType === "dev") {
+        // User type is "dev," so display developer content
+        document.querySelector(".public").style.display = "none";
+        document.querySelector(".developer").style.display = "block";
+    } else {
+        // User type is not "dev," so display public content
+        document.querySelector(".public").style.display = "block";
+        document.querySelector(".developer").style.display = "none";
+    }
 });
