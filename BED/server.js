@@ -7,14 +7,7 @@ const port = 3000;
 
 // Serve the HTML file
 app.get('/', (req, res) => {
-    fs.readFile('index.html', (err, data) => {
-        if (err) {
-            res.status(404).send('404 Not Found');
-        } else {
-            res.setHeader('Content-Type', 'text/html');
-            res.send(data);
-        }
-    });
+    res.status(200).send({"Results":"Success"});
 });
 
 let visitorCount = 0;
